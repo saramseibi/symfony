@@ -9,23 +9,17 @@ use Symfony\Component\Routing\Annotation\Route;
 class EtudiantController extends AbstractController
 
 {
-    /**
-     * @Router ("/etudiant", name ="etudiant")
-     */
+    #[Route('/etudiant', name: 'etudiant')]
     public function index():Response
     {
-        return new Response("bonjour");
+        return new Response("Bonjour");
     }
-    /**
-     * @Router ("/etudiant/{id}", name ="affichage_etudiant")
-     */
+   #[Route('/etudiant/{id}', name: 'affichage_etudiant', requirements: ['id' => '\d+'])]
     public function affichegeetudiant($id):Response
     {
-        return new Response("bonjour".$id);
+        return new Response("étudiant numéro".$id);
     }
-    /**
-     * @Router ("/etudiant/{name}", name ="etudiant_name")
-     */
+    #[Route('/etudiant/name/{name}', name: 'etudiant_name')]
     public function voirnom($name):Response
     {
         return $this->render('etudiant/voirnom.html.twig', ['name'=>$name]);
